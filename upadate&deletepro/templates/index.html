@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>uploading img to server</title>
+</head>
+
+<body>
+{% if update %}
+        <form action="{% url 'save' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr><th>Product Details updation</th></tr>
+            <tr><th><input type="number" placeholder="No" readonly value="{{ update.no }}" name="no" required></th></tr>
+            <tr><th><input type="text" placeholder="Name" value="{{ update.name }}" name="name" required></th></tr>
+            <tr><th><input type="number" placeholder="Price" value="{{ update.price }}" name="price" required></th></tr>
+            <tr>
+               <th> <img src="{{ update.image.url }}" width="60" height="110"></th>
+            </tr>
+            <tr><th><input type="file" value="{{ update.image }}" name="image" required></th></tr>
+            <tr><th><button type="submit">save</button> </th></tr>
+        </table>
+    </form>
+{% else %}
+    <form action="{% url 'save' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr><th>Product Registration</th></tr>
+            <tr><th><input type="number" placeholder="No" name="no" required></th></tr>
+            <tr><th><input type="text" placeholder="Name" name="name" required></th></tr>
+            <tr><th><input type="number" placeholder="Price" name="price" required></th></tr>
+            <tr><th><input type="file"  name="image" required></th></tr>
+            <tr><th><button type="submit">save</button> </th></tr>
+        </table>
+    </form>
+{% endif %}
+    <br>
+{% comment %} all products data table {% endcomment %}
+
+{% if data %}
+    <h2 align="center" style="color: blue">Product Details</h2>
+<table align="center" border="2">
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+    {% for x in data %}
+        <tr>
+            <th width="100">{{ x.no }}</th>
+            <th width="100">{{ x.name }}</th>
+            <th width="100">{{ x.price }}</th>
+            <th>
+                <a href="{{ x.image.url }}">
+                <img src="{{ x.image.url }}" width="60" height="110">
+                    </a>
+            </th>
+            <th width="100">
+                <form action="{% url 'update' %}">
+                    <input type="hidden" name="pn" value="{{ x.no }}">
+                <button type="submit">Update</button>
+                    </form>
+            </th>
+        <th width="100">
+            <a href="{% url 'deleteProduct' %}?pno={{ x.no }}">
+                Delete
+            </a>
+        </th>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+ <h3 align="center" style="color: blue">NO Products data to show</h3>
+{% endif %}
+
+</body>
+</html>

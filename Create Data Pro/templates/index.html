@@ -1,0 +1,53 @@
+<html>
+<body>
+<form action="/save/"  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table align="center" border="2">
+        <h1  style="color: gold;" align="center">project Detail</h1>
+        <tr>
+            <th><input type="number" name="no" placeholder="produce_no" required></th>
+        </tr>
+        <tr>
+            <th><input type="text" name="name" placeholder="produce_name" required></th>
+        </tr>
+        <tr>
+            <th><input type="number" name="price" placeholder="produce_price" required></th>
+        </tr>
+        <tr>
+            <th><input type="file" name="image"></th>
+        </tr>
+        <tr>
+            <th><button type="submit">save</button> </th>
+        </tr>
+
+    </table>
+</form>
+<hr/>
+{% if data %}
+    <table align="center" border="2" width="800">
+    <tr/>
+        <th>no</th>
+        <th>name</th>
+        <th>price</th>
+        <th>image</th>
+        <th>delete</th>
+        <th>updata</th>
+
+    </tr>
+    <h1  align="center" style="color:deepskyblue;">walcome to data table</h1>
+    {% for i in data %}
+        <tr>
+        <th>{{ i.p_no }}</th>
+        <th>{{ i.p_name }}</th>
+        <th>{{ i.p_price }}</th>
+        <th><img   width="50" src="{{i.p_image.url }}"></th>
+        <th><button type="submit">Delete</button> </th>
+        <th><a href="{% url "delete" %}"  ? x="{{ i.p_no }}"></a> </th>
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <h1>data is not available</h1>
+{% endif %}
+</body>
+</html>

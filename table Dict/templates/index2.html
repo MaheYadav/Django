@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>3- experience Employee's Data highlighted</title>
+    </head>
+    <h2 align="center">Data from views</h2>
+    <h3 align="center">3- experience Employee's Data highlighted</h3>
+    <body>
+        <table align="center" border="0" bgcolor="#d6fff8">
+            <tr bgcolor="#f2ffa4">
+                <th width="150">IDNO</th>
+                <th width="150">NAME</th>
+                <th width="150">EXPERIENCE</th>
+                <th width="150">SALARY</th>
+            </tr>
+                {% for k,v in data.items %}
+                    {% if v.exp >= 3 %}
+                <tr>
+                    <td>{{ k }}</td>
+                    <td>{{ v.name }}</td>
+                    <td>{{ v.exp }}</td>
+                    <td>{{ v.salary }}</td>
+                </tr>
+                    {% else %}
+                <tr bgcolor="#ff7d5d">
+                    <td>{{ k }}</td>
+                    <td>{{ v.name }}</td>
+                    <td>{{ v.exp }}</td>
+                    <td>{{ v.salary }}</td>
+                </tr>
+                    {% endif %}
+
+
+            </tr>
+                {% endfor %}
+        </table>
+    </body>
+</html>

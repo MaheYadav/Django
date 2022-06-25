@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>All employee's data</title>
+    </head>
+    <h2 align="center">Data from views</h2>
+    <h3 align="center">All Employee's Data </h3>
+    <body>
+        <table align="center" border="0" bgcolor="#faebd7">
+            <tr bgcolor="#7fffd4">
+                <th width="150">IDNO</th>
+                <th width="150">NAME</th>
+                <th width="150">EXPERIENCE</th>
+                <th width="150">SALARY</th>
+                <th></th>
+            </tr>
+                {% for k,v in data.items %}
+            <tr>
+                    <td>{{ k }}</td>
+                    {% for key,value in v.items %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                {% endfor %}
+
+            </tr>
+        </table>
+    </body>
+</html>

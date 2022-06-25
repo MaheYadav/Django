@@ -1,0 +1,29 @@
+<html>
+    <head></head>
+    <body>
+        <h2>Data from views</h2>
+        {#to display whole dict which is sent from views#}
+        <h3> whole dictionary which is sent:</h3>
+        <h4>{{ data}} </h4>
+        <br/><br/>
+<hr/>
+        {% for key,value in data.items %}
+            {{ key}}:{{ value }}<br/>
+        {% endfor %}
+<br/>
+<hr/><hr/>
+        {% for key,value in data.items  %}
+            <h3> IDNO : {{ key }}  </h3>
+            {% for k,v in value.items %}
+             <h4>   {{ k }} : {{ v }} </h4>
+            {% endfor %}<br/>
+        {% endfor %}
+<hr/>
+        {% for key,value in data.items  %}
+            <h3> IDNO : {{ key }}  </h3>
+            {% for v in value.values %}
+             <h4>    {{ v }} </h4>
+            {% endfor %}
+        {% endfor %}
+    </body>
+</html>
